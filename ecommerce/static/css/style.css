@@ -1,0 +1,36 @@
+body
+{
+background-color:#455b7a;
+font-family: 'IM Fell DW Pica SC', serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Zilla Slab', serif;
+font-weight:300;
+
+}
+
+.footer
+{
+height:40px;
+width:100%;
+background-color:lightgray;
+position:fixed;
+bottom:0;
+left:0;
+text-align:center;
+}
+.navbar
+{
+background-color:white;
+}
+
+.form-control
+{
+width:50%;
+}
+
+.table-bordered
+{
+border-color:red;
+
+}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row fs-5 text-center">
+        <h4 class="text-center">Shopping Cart</h4>
+
+        <div class="col-8 mt-5" style="position:absolute;left:0;"><table class="table table-bordered">
+            <tr><th colspan="6" >Cart Items</th></tr>
+
+
+         {% for i in c %}
+            <tr><td>
+                <img src="{{ i.product.image.url}}" height="200px" width="200px">
+            </td>
+            <td><h6><b>{{i.product.name}}</b></h6></td>
+            <td><h5>Product Id:{{i.product.id}}</h5>
+            <h6>Unit Price:{{i.product.price}}</h6>
+            <h6>Quantity:{{i.quantity}}*{{i.product.price}}</h6></td>
+            <td>Subtotal:{{i.subtotal}}</td>
+            <td>
+<!--             {% if i.quantity < i.product.stock %}-->
+                {% if i.product.stock > 0 %}
+               <a href="{% url 'cart:addtocart' i.product.name %}"><i class="fa-solid fa-circle-plus text-secondary fs-5"></i></a>
+             <a href="{% url 'cart:cart_remove'  i.product.name %}"><i class="fa-sharp fa-solid fa-circle-minus text-secondary fs-5"></i></a>
+             <a href="{% url 'cart:full_remove'  i.product.name %}"><i class="fa-solid fa-trash text-secondary fs-5"></i></a>
+{% else %}
+
+                <a href="{% url 'cart:cart_remove'  i.product.name %}"><i class="fa-sharp fa-solid fa-circle-minus text-secondary fs-5"></i></a>
+              <a href="{% url 'cart:full_remove'  i.product.name %}"><i class="fa-solid fa-trash text-secondary fs-5"></i></a>
+              {% endif %}</td>
+{% endif %}
+            {% endfor %}
+
+        </table></div>
+
+
+
+
+
+
+        <div class="col-4 mt-5" style="position:absolute; right:0;"><table class="table table-bordered">
+            <tr><th colspan="6">Check Out</th></tr>
+        <tr><td>TOTAL:{{total}}</td></tr></table>
+        <a href="{% url 'cart:orderform' %}" class="btn btn-danger" style="position:absolute;left:10px;">Place Order</a>
+            <a href="{% url 'shop:allcat' %}" class="btn btn-danger" style="position:absolute;right:10px;">Continue Shopping</a>
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
